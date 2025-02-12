@@ -9,8 +9,8 @@ include "connessione.php";
 $scelta = $_GET['scelta'];
 
 $query = "SELECT * FROM recensioni WHERE IDRecensione = $scelta";
-
 $result = $conn->query($query);
+
 
 if ($result->num_rows > 0) {
     echo "<table style = 'border: 1px solid black; text-align: center; margin: auto; width: 50%; font-size: 30px'>";
@@ -34,14 +34,12 @@ if ($result->num_rows > 0) {
 
 
 
-
-
-
-
-
-
-
-
+$deleteQuery = "DELETE FROM recensioni WHERE IDRecensione = $scelta";
+if ($conn->query($deleteQuery) === TRUE) {
+    echo "<p style='color: green; text-align: center; font-size: 20px'>Recensione eliminata con successo.</p>";
+} else {
+    echo "<p style='color: red; text-align: center; font-size: 20px'>Errore nell'eliminazione: " . $conn->error . "</p>";
+}
 
 
 
